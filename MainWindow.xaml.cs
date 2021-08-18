@@ -17,30 +17,35 @@ namespace WpfApp2
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
+    /// </summary>   
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
+
             InitializeComponent();
+
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextBox tb = sender as TextBox;
 
-            if (tb.Text.Length >= 4)
+            TextBox tb = sender as TextBox;
+            if (tb.Text.Length >= 4 & tb.Text.Length > 0)
              tb.Background = new SolidColorBrush(Color.FromRgb(3, 81, 3));
              else tb.Background = new SolidColorBrush(Color.FromRgb(189, 0, 36));
-            if (tb.Text.Length >= 4)
-                btn.IsEnabled = true;
+
+             if (AgeBox.Text.Length >= 4 & SurnameBox.Text.Length >= 4 & NameBox.Text.Length >= 4)
+             btn.IsEnabled = true;
             else btn.IsEnabled = false;
+
         }
 
- 
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
     }
 }
