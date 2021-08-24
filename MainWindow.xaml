@@ -3,12 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp2"
         xmlns:convertors="clr-namespace:WpfApp2.Convertors"
+        xmlns:model ="clr-namespace:WpfApp2.VievModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
+    <Window.DataContext>
+        <model:Person/>
+    </Window.DataContext>
+
+        <Window.Resources>
         <convertors:StringsToBooleanConvertor x:Key="StringsToBooleanConvertor" />
+        
         <convertors:StringToBrushConvertor x:Key="StringToBrushConvertor" />
     </Window.Resources>
     <Grid>
@@ -18,11 +23,18 @@
                     <TextBlock>Tab 1</TextBlock>
                 </TabItem.Header>
                 <Grid>
-                    <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="20,10,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top"/>
-                    <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="20,30,0,0" TextWrapping="Wrap" Text="Surname" VerticalAlignment="Top"/>
-                    <TextBlock HorizontalAlignment="Left" FontSize="16" Margin="20,50,0,0" TextWrapping="Wrap" Text="Age" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" FontSize="16"
+                               Margin="20,10,0,0" TextWrapping="Wrap"
+                               Text="Name" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" FontSize="16" 
+                               Margin="20,30,0,0" TextWrapping="Wrap" 
+                               Text="Surname" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" FontSize="16"
+                               Margin="20,50,0,0" TextWrapping="Wrap"
+                               Text="Age" VerticalAlignment="Top"/>
 
                     <TextBox  HorizontalAlignment="Left" Name="NameBox" 
+                              Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
                               FontSize="9" Height="15"
                               Background ="{Binding Path= Text , ElementName=NameBox,Converter={StaticResource StringToBrushConvertor}}"
                               Margin="100,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
@@ -32,6 +44,7 @@
                         </TextBox.BindingGroup>
                     </TextBox>
                     <TextBox HorizontalAlignment="Left" Name="SurnameBox" FontSize="9" Height="15" 
+                             Text="{Binding Path=Surname, UpdateSourceTrigger=PropertyChanged}"
                              Background ="{Binding Path= Text , ElementName=SurnameBox,Converter={StaticResource StringToBrushConvertor}}"
                              Margin="100,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
                              Width="144" TextChanged="TextBox_TextChanged">
@@ -40,8 +53,9 @@
                         </TextBox.BindingGroup>
                     </TextBox>
                     <TextBox HorizontalAlignment="Left" Name="AgeBox" FontSize="9" Height="15" 
+                             Text="{Binding Path=Age, UpdateSourceTrigger=PropertyChanged}"
                              Background ="{Binding Path= Text , ElementName=AgeBox,Converter={StaticResource StringToBrushConvertor}}"
-                             Margin="100,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"
+                             Margin="100,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
                              Width="144" TextChanged="TextBox_TextChanged">
                         <TextBox.BindingGroup>
                             <BindingGroup/>
@@ -58,6 +72,7 @@
                         </Button.IsEnabled>
                     </Button>
                    
+                    
                 </Grid>
             </TabItem>
             <TabItem Header="Tab 2">
