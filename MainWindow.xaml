@@ -6,14 +6,12 @@
         xmlns:convertors="clr-namespace:WpfApp2.Convertors"
         xmlns:model ="clr-namespace:WpfApp2.VievModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="900">
     <Window.DataContext>
         <model:Person/>
     </Window.DataContext>
-
-        <Window.Resources>
+    <Window.Resources>
         <convertors:StringsToBooleanConvertor x:Key="StringsToBooleanConvertor" />
-        
         <convertors:StringToBrushConvertor x:Key="StringToBrushConvertor" />
     </Window.Resources>
     <Grid>
@@ -22,57 +20,69 @@
                 <TabItem.Header>
                     <TextBlock>Tab 1</TextBlock>
                 </TabItem.Header>
-                <Grid>
-                    <TextBlock HorizontalAlignment="Left" FontSize="16"
-                               Margin="20,10,0,0" TextWrapping="Wrap"
-                               Text="Name" VerticalAlignment="Top"/>
-                    <TextBlock HorizontalAlignment="Left" FontSize="16" 
-                               Margin="20,30,0,0" TextWrapping="Wrap" 
-                               Text="Surname" VerticalAlignment="Top"/>
-                    <TextBlock HorizontalAlignment="Left" FontSize="16"
-                               Margin="20,50,0,0" TextWrapping="Wrap"
-                               Text="Age" VerticalAlignment="Top"/>
+                <Grid Height="250" Margin="254,0,306,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0"
+                               TextWrapping="Wrap"
+                               Text="Name" />
 
-                    <TextBox  HorizontalAlignment="Left" Name="NameBox" 
+                    <TextBlock Grid.Column="0" Grid.Row="1" 
+                               TextWrapping="Wrap" 
+                               Text="Surname"/>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2"
+                               TextWrapping="Wrap"
+                               Text="Age" />
+
+                    <TextBox  Grid.Column="1" Grid.Row="0"
+                              Name="NameBox" 
                               Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
                               FontSize="9" Height="15"
                               Background ="{Binding Path= Text , ElementName=NameBox,Converter={StaticResource StringToBrushConvertor}}"
-                              Margin="100,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                              TextWrapping="Wrap" VerticalAlignment="Top"
                               Width="144" TextChanged="TextBox_TextChanged">
-                        <TextBox.BindingGroup>
-                            <BindingGroup/>
-                        </TextBox.BindingGroup>
+
                     </TextBox>
-                    <TextBox HorizontalAlignment="Left" Name="SurnameBox" FontSize="9" Height="15" 
+                    <TextBox Grid.Column="1" Grid.Row="1"
+                             Name="SurnameBox"
+                             FontSize="9" Height="15" 
                              Text="{Binding Path=Surname, UpdateSourceTrigger=PropertyChanged}"
                              Background ="{Binding Path= Text , ElementName=SurnameBox,Converter={StaticResource StringToBrushConvertor}}"
-                             Margin="100,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                             TextWrapping="Wrap" VerticalAlignment="Top"
                              Width="144" TextChanged="TextBox_TextChanged">
-                        <TextBox.BindingGroup>
-                            <BindingGroup/>
-                        </TextBox.BindingGroup>
+
                     </TextBox>
-                    <TextBox HorizontalAlignment="Left" Name="AgeBox" FontSize="9" Height="15" 
+                    <TextBox Grid.Column="1" Grid.Row="2" Name="AgeBox" 
+                             FontSize="9" Height="15" 
                              Text="{Binding Path=Age, UpdateSourceTrigger=PropertyChanged}"
                              Background ="{Binding Path= Text , ElementName=AgeBox,Converter={StaticResource StringToBrushConvertor}}"
-                             Margin="100,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top"
+                             TextWrapping="Wrap" VerticalAlignment="Top"
                              Width="144" TextChanged="TextBox_TextChanged">
-                        <TextBox.BindingGroup>
-                            <BindingGroup/>
-                        </TextBox.BindingGroup>
+
                     </TextBox>
-                    <Button Content="Send" HorizontalAlignment="Left" Margin="125,106,0,0"
-                            VerticalAlignment="Top" Width="75" Click="Button_Click">
+                    <Button Content="Send" 
+                            VerticalAlignment="Top" Width="50" Click="Button_Click" 
+                            Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
                         <Button.IsEnabled>
-                        <MultiBinding Converter="{StaticResource StringsToBooleanConvertor}" >
-                            <Binding ElementName="NameBox" Path="Text"/>
-                            <Binding ElementName="SurnameBox" Path="Text"/>
-                            <Binding ElementName="AgeBox" Path="Text"/>
-                        </MultiBinding>
+                            <MultiBinding Converter="{StaticResource StringsToBooleanConvertor}" >
+                                <Binding ElementName="NameBox" Path="Text"/>
+                                <Binding ElementName="SurnameBox" Path="Text"/>
+                                <Binding ElementName="AgeBox" Path="Text"/>
+                            </MultiBinding>
                         </Button.IsEnabled>
                     </Button>
-                   
-                    
+
+
                 </Grid>
             </TabItem>
             <TabItem Header="Tab 2">
@@ -95,7 +105,7 @@
                 </DockPanel>
 
             </TabItem>
-            
+
 
 
         </TabControl>

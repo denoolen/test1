@@ -21,39 +21,24 @@ namespace WpfApp2.VievModel
             this.Surname = "No Surname";
             this.Age = 1;
         }
-        public Person(int age)
-          //  : this()
-        {
-			this.Age = age;
-		}
-
-		public Person(string name, int age)
-		//: this(age)
-		{
-			this.Name = name;
-		}
-		public Person(string surname, int age, string name)
-		 //: this(age)
-		{
-			this.surname = surname;
-		}
+ 
 
 		public string Name
         {
             get { return name; }
-            set 
-            {
+			set
+			{
                 name = value;
-                OnPropertyChanged(Name);
+                OnPropertyChanged();
             }
         }
         public string Surname
         {
             get { return surname; }
             set
-            { 
-                surname = value;
-                OnPropertyChanged("Surname");
+			{
+				surname = value;
+                OnPropertyChanged();
             }
         }
 
@@ -63,7 +48,7 @@ namespace WpfApp2.VievModel
             set 
             {
                 age = value;
-                OnPropertyChanged("age");
+                OnPropertyChanged();
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -86,7 +71,7 @@ namespace WpfApp2.VievModel
 			return false;
 		}
 
-		
+
 	}
    
 }
