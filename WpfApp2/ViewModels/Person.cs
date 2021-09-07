@@ -6,22 +6,20 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfApp2.VievModel
+namespace WpfApp2.ViewModels
 {
     public class Person : INotifyPropertyChanged
     {
        
         private string name, surname;
         private int age;
+		public Person()
+		{
+			this.Name = "No name";
+			this.Surname = "No Surname";
+			this.Age = 1;
+		}
 
-
-        public Person()
-        {
-            this.Name = "No name";
-            this.Surname = "No Surname";
-            this.Age = 1;
-        }
- 
 
 		public string Name
         {
@@ -59,12 +57,12 @@ namespace WpfApp2.VievModel
                                           
         }
 
-		protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
+		protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName] string prop = null)
 		{
 			if (!Equals(field, newValue))
 			{
 				field = newValue;
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
 				return true;
 			}
 

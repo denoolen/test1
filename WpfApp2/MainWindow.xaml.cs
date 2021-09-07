@@ -23,10 +23,9 @@ namespace WpfApp2
 
         public MainWindow()
         {
-
+             
             InitializeComponent();
-
-
+          
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -37,7 +36,7 @@ namespace WpfApp2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-          
+            MessageBox.Show(tabC.DataContext?.ToString());
         }
     }
 }

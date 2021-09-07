@@ -4,23 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:convertors="clr-namespace:WpfApp2.Convertors"
-        xmlns:model ="clr-namespace:WpfApp2.VievModel"
+        xmlns:model ="clr-namespace:WpfApp2.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="900">
     <Window.DataContext>
-        <model:Person/>
+        <model:Person />
     </Window.DataContext>
     <Window.Resources>
         <convertors:StringsToBooleanConvertor x:Key="StringsToBooleanConvertor" />
         <convertors:StringToBrushConvertor x:Key="StringToBrushConvertor" />
     </Window.Resources>
-    <Grid>
+   
+    <Grid x:Name="xGrid">
         <TabControl x:Name="tabC" Background="#FF6389B6">
-            <TabItem>
+            <TabItem Width="144">
                 <TabItem.Header>
                     <TextBlock>Tab 1</TextBlock>
                 </TabItem.Header>
-                <Grid Height="250" Margin="254,0,306,0">
+                <Grid Height="305" Margin="254,0,236,0">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -33,21 +34,24 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0"
+                                FontSize="25"
                                TextWrapping="Wrap"
                                Text="Name" />
 
                     <TextBlock Grid.Column="0" Grid.Row="1" 
+                                FontSize="25"
                                TextWrapping="Wrap" 
                                Text="Surname"/>
 
                     <TextBlock Grid.Column="0" Grid.Row="2"
+                               FontSize="25"
                                TextWrapping="Wrap"
                                Text="Age" />
 
                     <TextBox  Grid.Column="1" Grid.Row="0"
                               Name="NameBox" 
                               Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"
-                              FontSize="9" Height="15"
+                              FontSize="15" Height="25"
                               Background ="{Binding Path= Text , ElementName=NameBox,Converter={StaticResource StringToBrushConvertor}}"
                               TextWrapping="Wrap" VerticalAlignment="Top"
                               Width="144" TextChanged="TextBox_TextChanged">
@@ -55,7 +59,7 @@
                     </TextBox>
                     <TextBox Grid.Column="1" Grid.Row="1"
                              Name="SurnameBox"
-                             FontSize="9" Height="15" 
+                             FontSize="15" Height="25" 
                              Text="{Binding Path=Surname, UpdateSourceTrigger=PropertyChanged}"
                              Background ="{Binding Path= Text , ElementName=SurnameBox,Converter={StaticResource StringToBrushConvertor}}"
                              TextWrapping="Wrap" VerticalAlignment="Top"
@@ -63,7 +67,7 @@
 
                     </TextBox>
                     <TextBox Grid.Column="1" Grid.Row="2" Name="AgeBox" 
-                             FontSize="9" Height="15" 
+                             FontSize="15" Height="25"
                              Text="{Binding Path=Age, UpdateSourceTrigger=PropertyChanged}"
                              Background ="{Binding Path= Text , ElementName=AgeBox,Converter={StaticResource StringToBrushConvertor}}"
                              TextWrapping="Wrap" VerticalAlignment="Top"
@@ -71,7 +75,8 @@
 
                     </TextBox>
                     <Button Content="Send" 
-                            VerticalAlignment="Top" Width="50" Click="Button_Click" 
+                            VerticalAlignment="Top" 
+                            Width="75" Height="35" Click="Button_Click" 
                             Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
                         <Button.IsEnabled>
                             <MultiBinding Converter="{StaticResource StringsToBooleanConvertor}" >
@@ -85,7 +90,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Tab 2">
+            <TabItem Header="Tab 2" Width="144">
                 <StackPanel Orientation="Horizontal">
                     <Button>Button 1</Button>
                     <Button>Button 2</Button>
@@ -95,7 +100,7 @@
                 </StackPanel>
 
             </TabItem>
-            <TabItem Header="Tab 3">
+            <TabItem Header="Tab 3" Width="144">
                 <DockPanel>
                     <Button DockPanel.Dock="Top" Height="40">Button</Button>
                     <Button DockPanel.Dock="Bottom" Height="40">Button</Button>
@@ -105,7 +110,67 @@
                 </DockPanel>
 
             </TabItem>
+            <TabItem Header="Tab 11" Width="144">
+                <TabItem.BindingGroup>
+                    <BindingGroup Name="TestBinding"/>
+                </TabItem.BindingGroup>
+                <Grid Height="305" Margin="254,0,236,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0"
+                                FontSize="25"
+                               TextWrapping="Wrap"
+                               Text="Name" />
 
+                    <TextBlock Grid.Column="0" Grid.Row="1" 
+                                FontSize="25"
+                               TextWrapping="Wrap" 
+                               Text="Surname"/>
+
+                    <TextBlock Grid.Column="0" Grid.Row="2"
+                               FontSize="25"
+                               TextWrapping="Wrap"
+                               Text="Age" />
+
+                    <TextBox  Grid.Column="1" Grid.Row="0"
+                              Name="NameBox1" 
+                              Text=""
+                              FontSize="15" Height="25"         
+                              TextWrapping="Wrap" VerticalAlignment="Top"
+                              Width="144" TextChanged="TextBox_TextChanged" Background="#FF0F650F">
+
+                    </TextBox>
+                    <TextBox Grid.Column="1" Grid.Row="1"
+                             Name="SurnameBox1"
+                             FontSize="15" Height="25" 
+                             Text=""         
+                             TextWrapping="Wrap" VerticalAlignment="Top"
+                             Width="144" TextChanged="TextBox_TextChanged" Background="#FF0F650F">
+
+                    </TextBox>
+                    <TextBox Grid.Column="1" Grid.Row="2" Name="AgeBox1" 
+                             FontSize="15" Height="25"
+                             Text=""
+                             TextWrapping="Wrap" VerticalAlignment="Top"
+                             Width="144" TextChanged="TextBox_TextChanged" Background="#FF0F650F">
+
+                    </TextBox>
+                    <Button Content="Send"                            
+                            VerticalAlignment="Top" 
+                            Width="75" Height="35" Click="Button_Click" 
+                            Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" IsEnabled="False"/>
+                </Grid>
+
+            </TabItem>
 
 
         </TabControl>
